@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "esl-product-portal",
+      "runtimeExecutable": "/Users/muzammilaziz/.local/node/bin/node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev", "--webpack"],
+      "port": 3000
+    }
+  ]
+}
