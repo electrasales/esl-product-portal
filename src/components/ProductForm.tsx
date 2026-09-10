@@ -68,50 +68,50 @@ export function ProductForm({ product }: { product?: Product }) {
   return (
     <form onSubmit={handleSubmit} className="mt-6 max-w-lg space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+        <label className="block text-xs font-semibold text-gray-700">Name</label>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+          className="mt-1.5 block w-full rounded-[10px] border-[1.5px] border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 focus:border-navy-600 focus:outline-none"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-xs font-semibold text-gray-700">
           Description
         </label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+          className="mt-1.5 block w-full rounded-[10px] border-[1.5px] border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 focus:border-navy-600 focus:outline-none"
         />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">SKU</label>
+          <label className="block text-xs font-semibold text-gray-700">SKU</label>
           <input
             value={sku}
             onChange={(e) => setSku(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+            className="mt-1.5 block w-full rounded-[10px] border-[1.5px] border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 focus:border-navy-600 focus:outline-none"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-xs font-semibold text-gray-700">
             Category
           </label>
           <input
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+            className="mt-1.5 block w-full rounded-[10px] border-[1.5px] border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 focus:border-navy-600 focus:outline-none"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-xs font-semibold text-gray-700">
           Price (USD)
         </label>
         <input
@@ -121,12 +121,12 @@ export function ProductForm({ product }: { product?: Product }) {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+          className="mt-1.5 block w-full rounded-[10px] border-[1.5px] border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 focus:border-navy-600 focus:outline-none"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Image</label>
+        <label className="block text-xs font-semibold text-gray-700">Image</label>
         {imageUrl && !imageFile && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -153,7 +153,7 @@ export function ProductForm({ product }: { product?: Product }) {
       </label>
 
       {error && (
-        <p className="text-sm text-red-600" role="alert">
+        <p className="text-sm text-brand-red" role="alert">
           {error}
         </p>
       )}
@@ -162,7 +162,7 @@ export function ProductForm({ product }: { product?: Product }) {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+          className="rounded-[10px] bg-brand-red px-5 py-2.5 font-head text-sm font-bold text-white hover:bg-brand-red-dark disabled:opacity-50"
         >
           {saving ? "Saving..." : isEditing ? "Save changes" : "Add product"}
         </button>

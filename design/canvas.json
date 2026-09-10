@@ -1,0 +1,13 @@
+{
+  "artboards": [
+    { "file": "Login.dc.html", "x": 0, "y": 0, "w": 1440, "h": 900, "print": "flow" },
+    { "file": "Main.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 1560, "print": "flow" },
+    { "file": "Cart.dc.html", "x": 3120, "y": 0, "w": 1440, "h": 1160, "print": "flow" }
+  ],
+  "annotations": [
+    { "id": "note-login", "x": 0, "y": -90, "w": 300, "text": "Sign in / sign up" },
+    { "id": "note-main", "x": 1560, "y": -90, "w": 300, "text": "Customer dashboard + catalog" },
+    { "id": "note-cart", "x": 3120, "y": -90, "w": 300, "text": "Cart / quote builder" }
+  ],
+  "launch": { "view": "canvas" }
+}

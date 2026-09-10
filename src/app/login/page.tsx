@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { signIn, type AuthFormState } from "@/app/auth/actions";
+import { AuthShell } from "@/components/AuthShell";
 
 const initialState: AuthFormState = { error: null };
 
@@ -10,64 +11,70 @@ export default function LoginPage() {
   const [state, formAction, pending] = useActionState(signIn, initialState);
 
   return (
-    <div className="flex flex-1 items-center justify-center px-4 py-12">
-      <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-semibold text-gray-900">Sign in</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Welcome back to the product portal.
-        </p>
-
-        <form action={formAction} className="mt-8 space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              autoComplete="current-password"
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
-            />
-          </div>
-
-          {state.error && (
-            <p className="text-sm text-red-600" role="alert">
-              {state.error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={pending}
-            className="w-full rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
-          >
-            {pending ? "Signing in..." : "Sign in"}
-          </button>
-        </form>
-
-        <p className="mt-6 text-sm text-gray-500">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-gray-900 underline">
-            Sign up
-          </Link>
+    <AuthShell>
+      <div className="mt-5 text-center">
+        <h1 className="font-head text-2xl font-extrabold text-gray-900">Welcome back</h1>
+        <p className="mt-1.5 text-sm text-gray-500">
+          Sign in to the Electra Sales product portal
         </p>
       </div>
-    </div>
+
+      <form action={formAction} className="mt-6 space-y-3.5">
+        <div className="space-y-1.5">
+          <label htmlFor="email" className="text-xs font-semibold text-gray-700">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="you@company.com"
+            className="block w-full rounded-[10px] border-[1.5px] border-gray-200 bg-gray-50/60 px-3.5 py-3 text-sm text-gray-900 focus:border-navy-600 focus:outline-none focus:ring-2 focus:ring-navy-600/15"
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <label htmlFor="password" className="text-xs font-semibold text-gray-700">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            autoComplete="current-password"
+            className="block w-full rounded-[10px] border-[1.5px] border-gray-200 bg-gray-50/60 px-3.5 py-3 text-sm text-gray-900 focus:border-navy-600 focus:outline-none focus:ring-2 focus:ring-navy-600/15"
+          />
+        </div>
+
+        {state.error && (
+          <p className="text-sm text-brand-red" role="alert">
+            {state.error}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={pending}
+          className="w-full rounded-[10px] bg-brand-red py-3 font-head text-sm font-bold text-white hover:bg-brand-red-dark disabled:opacity-50"
+        >
+          {pending ? "Signing in..." : "Sign in"}
+        </button>
+      </form>
+
+      <div className="mt-6 flex items-center gap-3 text-xs text-gray-300">
+        <div className="h-px flex-1 bg-gray-100" />
+        <span>New here?</span>
+        <div className="h-px flex-1 bg-gray-100" />
+      </div>
+
+      <div className="mt-4 text-center">
+        <Link href="/signup" className="text-sm font-semibold text-navy-600 hover:text-brand-red">
+          Create an account &rarr;
+        </Link>
+      </div>
+    </AuthShell>
   );
 }

@@ -12,7 +12,7 @@ export default async function AdminRequestsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900">
+      <h1 className="font-head text-2xl font-extrabold text-gray-900">
         Incoming requests
       </h1>
 
@@ -31,14 +31,14 @@ export default async function AdminRequestsPage() {
             return (
               <div
                 key={request.id}
-                className="rounded-lg border border-gray-200 bg-white p-4"
+                className="rounded-[14px] border border-gray-100 bg-white p-5"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="font-head text-sm font-bold text-gray-900">
                       {request.profiles?.full_name || "Customer"}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-400">
                       {request.profiles?.phone}
                       {request.profiles?.phone ? " · " : ""}
                       {new Date(request.created_at).toLocaleString()}
@@ -67,12 +67,12 @@ export default async function AdminRequestsPage() {
                 </ul>
 
                 {request.notes && (
-                  <p className="mt-2 text-xs text-gray-500">
+                  <p className="mt-2 text-xs text-gray-400">
                     Note: {request.notes}
                   </p>
                 )}
 
-                <p className="mt-2 text-right text-sm font-semibold text-gray-900">
+                <p className="mt-2 text-right font-head text-sm font-bold text-gray-900">
                   Total: ${total.toFixed(2)}
                 </p>
               </div>

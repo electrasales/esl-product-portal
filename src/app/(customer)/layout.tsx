@@ -21,9 +21,7 @@ export default async function CustomerLayout({
   return (
     <div className="flex flex-1 flex-col">
       <NavBar links={CUSTOMER_LINKS} fullName={user.profile.full_name} />
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
-        {children}
-      </main>
+      <main className="flex flex-1 flex-col bg-gray-50">{children}</main>
     </div>
   );
 }

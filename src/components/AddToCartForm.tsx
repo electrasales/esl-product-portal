@@ -21,7 +21,7 @@ export function AddToCartForm({
         min={1}
         value={quantity}
         onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-        className="w-20 rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+        className="w-20 rounded-[10px] border-[1.5px] border-gray-200 px-3 py-2.5 text-sm text-gray-900 focus:border-navy-600 focus:outline-none"
       />
       <button
         type="button"
@@ -30,11 +30,11 @@ export function AddToCartForm({
           setAdded(true);
           router.refresh();
         }}
-        className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+        className="rounded-[10px] bg-brand-red px-5 py-2.5 font-head text-[13.5px] font-bold text-white hover:bg-brand-red-dark"
       >
         Add to cart
       </button>
-      {added && <span className="text-sm text-green-600">Added</span>}
+      {added && <span className="text-sm font-medium text-navy-600">Added</span>}
     </div>
   );
 }

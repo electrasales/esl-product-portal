@@ -1,26 +1,33 @@
 import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/auth";
 import { CatalogBrowser } from "@/components/CatalogBrowser";
+import { HomeHero } from "@/components/HomeHero";
 import type { Product } from "@/types/database";
 
 export default async function CatalogPage() {
   const supabase = await createClient();
-  const { data: products } = await supabase
-    .from("products")
-    .select("*")
-    .eq("is_active", true)
-    .order("name")
-    .returns<Product[]>();
+  const [{ data: products }, user] = await Promise.all([
+    supabase
+      .from("products")
+      .select("*")
+      .eq("is_active", true)
+      .order("name")
+      .returns<Product[]>(),
+    getCurrentUser(),
+  ]);
+
+  const firstName = user?.profile.full_name.trim().split(/\s+/)[0] || "there";
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900">Products</h1>
-      <p className="mt-1 text-sm text-gray-500">
-        Browse the catalog, then add items to your cart to get a quote or
-        request an order.
-      </p>
-      <div className="mt-6">
-        <CatalogBrowser products={products ?? []} />
-      </div>
+      <HomeHero firstName={firstName} />
+
+      <section className="mx-auto w-full max-w-[1320px] px-4 pb-16 pt-12 sm:px-8">
+        <h2 className="font-head text-[21px] font-extrabold text-gray-900">Products</h2>
+        <div className="mt-5">
+          <CatalogBrowser products={products ?? []} />
+        </div>
+      </section>
     </div>
   );
 }

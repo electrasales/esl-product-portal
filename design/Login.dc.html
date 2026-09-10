@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: #2B3990; text-decoration: none; }
+    a:hover { color: #ED1C24; }
+    input:focus { outline: none; border-color: #2B3990 !important; box-shadow: 0 0 0 3px rgba(43,57,144,0.12); }
+  </style>
+</helmet>
+
+<div style="min-height:900px;width:100%;position:relative;overflow:hidden;background:linear-gradient(135deg,#1F2A6B 0%,#2B3990 60%,#28348A 100%);display:flex;flex-direction:column;font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;">
+
+  <svg style="position:absolute;left:-120px;bottom:-140px;width:520px;height:520px;opacity:.14;" viewBox="0 0 420 420" fill="none">
+    <line x1="0" y1="420" x2="420" y2="0" stroke="#ffffff" stroke-width="26"/>
+    <line x1="70" y1="420" x2="420" y2="70" stroke="#ED1C24" stroke-width="18"/>
+    <line x1="140" y1="420" x2="420" y2="140" stroke="#ffffff" stroke-width="10"/>
+  </svg>
+  <svg style="position:absolute;right:-100px;top:-120px;width:420px;height:420px;opacity:.12;" viewBox="0 0 420 420" fill="none">
+    <line x1="0" y1="420" x2="420" y2="0" stroke="#ffffff" stroke-width="20"/>
+    <line x1="70" y1="420" x2="420" y2="70" stroke="#ffffff" stroke-width="10"/>
+  </svg>
+
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;position:relative;">
+    <div style="width:100%;max-width:428px;background:#ffffff;border-radius:20px;padding:44px 40px 36px;box-shadow:0 30px 70px rgba(15,20,60,0.35);display:flex;flex-direction:column;align-items:center;gap:22px;">
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <svg width="52" height="52" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="markClipLogin"><rect width="40" height="40" rx="8"/></clipPath></defs>
+          <g clip-path="url(#markClipLogin)">
+            <rect width="40" height="40" fill="#2B3990"/>
+            <polygon points="0,0 22,0 0,22" fill="#ED1C24"/>
+            <polygon points="10,40 20,40 40,10 40,0 34,0" fill="#ffffff" opacity="0.92"/>
+          </g>
+        </svg>
+        <div style="text-align:center;line-height:1.1;">
+          <div style="font-family:'Sora',ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:22px;color:#1F2124;letter-spacing:-0.01em;">electra</div>
+          <div style="font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:12px;color:#8A8D95;letter-spacing:.04em;margin-top:1px;">sales limited</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <h1 style="margin:0 0 6px;font-family:'Sora',ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:24px;color:#1F2124;">Welcome back</h1>
+        <p style="margin:0;font-size:13.5px;color:#5B5D63;">Sign in to the Electra Sales product portal</p>
+      </div>
+
+      <div style="width:100%;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:12.5px;font-weight:600;color:#3A3C42;">Email</label>
+          <input type="email" placeholder="you@company.com" style="width:100%;padding:12px 14px;border:1.5px solid #E4E5EA;border-radius:10px;font-size:14px;font-family:inherit;color:#1F2124;background:#FAFAFB;">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="font-size:12.5px;font-weight:600;color:#3A3C42;">Password</label>
+          <input type="password" placeholder="••••••••" style="width:100%;padding:12px 14px;border:1.5px solid #E4E5EA;border-radius:10px;font-size:14px;font-family:inherit;color:#1F2124;background:#FAFAFB;">
+        </div>
+      </div>
+
+      <button style="width:100%;padding:13px;border:none;border-radius:10px;background:#ED1C24;color:#fff;font-family:'Sora',ui-sans-serif,system-ui,sans-serif;font-weight:700;font-size:14.5px;cursor:pointer;">Sign in</button>
+
+      <div style="width:100%;display:flex;align-items:center;gap:12px;color:#C3C5CC;font-size:12px;">
+        <div style="flex:1;height:1px;background:#E9EAEE;"></div>
+        <span>New here?</span>
+        <div style="flex:1;height:1px;background:#E9EAEE;"></div>
+      </div>
+
+      <a href="#" style="font-size:13.5px;font-weight:600;">Create an account &rarr;</a>
+
+      <p style="margin:4px 0 0;font-size:11px;color:#AEB0B8;text-align:center;line-height:1.5;">By continuing you agree to Electra Sales Limited's account terms and privacy notice.</p>
+    </div>
+  </div>
+
+  <footer style="background:#151C4D;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:relative;">
+    <span style="color:rgba(255,255,255,.6);font-size:12px;">&copy; 2026 Electra Sales Limited</span>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="color:rgba(255,255,255,.6);font-size:12px;">Privacy Policy</a>
+      <a href="#" style="color:rgba(255,255,255,.6);font-size:12px;">Need help?</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>

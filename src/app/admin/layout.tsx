@@ -20,7 +20,7 @@ export default async function AdminLayout({
   return (
     <div className="flex flex-1 flex-col">
       <NavBar links={ADMIN_LINKS} fullName={user.profile.full_name} />
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
+      <main className="mx-auto w-full max-w-[1320px] flex-1 bg-gray-50 px-4 py-10 sm:px-8">
         {children}
       </main>
     </div>

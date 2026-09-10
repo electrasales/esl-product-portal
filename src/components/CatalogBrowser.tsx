@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { Product } from "@/types/database";
+import { QuickAddButton } from "@/components/QuickAddButton";
 
 export function CatalogBrowser({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
@@ -28,19 +29,25 @@ export function CatalogBrowser({ products }: { products: Product[] }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <input
-          type="search"
-          placeholder="Search products..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none sm:max-w-xs"
-        />
+      <div className="flex flex-col gap-2.5 sm:flex-row">
+        <div className="flex items-center gap-2 rounded-[9px] border border-gray-200 bg-white px-3 py-2 sm:w-[240px]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9295A0" strokeWidth="2">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="search"
+            placeholder="Search products..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full bg-transparent text-[13px] text-gray-900 placeholder:text-gray-400 focus:outline-none"
+          />
+        </div>
         {categories.length > 1 && (
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none"
+            className="rounded-[9px] border border-gray-200 bg-white px-3 py-2 text-[13px] text-gray-700 focus:border-navy-600 focus:outline-none"
           >
             {categories.map((c) => (
               <option key={c} value={c}>
@@ -56,37 +63,47 @@ export function CatalogBrowser({ products }: { products: Product[] }) {
           No products match your search.
         </p>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {filtered.map((product) => (
-            <Link
+            <div
               key={product.id}
-              href={`/products/${product.id}`}
-              className="group rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-gray-400"
+              className="group overflow-hidden rounded-[14px] border border-gray-100 bg-white transition hover:shadow-[0_12px_28px_rgba(31,32,36,0.08)]"
             >
-              <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-100">
-                {product.image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="h-full w-full object-cover transition group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-xs text-gray-400">
-                    No image
-                  </div>
-                )}
+              <Link href={`/products/${product.id}`} className="block">
+                <div className="flex aspect-square w-full items-center justify-center overflow-hidden bg-gray-50">
+                  {product.image_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={product.image_url}
+                      alt={product.name}
+                      className="h-full w-full object-cover transition group-hover:scale-105"
+                    />
+                  ) : (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#C3C5CC" strokeWidth="1.6">
+                      <path d="M21 8l-9-5-9 5 9 5 9-5Z" />
+                      <path d="M3 8v8l9 5 9-5V8" />
+                      <path d="M12 13v8" />
+                    </svg>
+                  )}
+                </div>
+                <div className="px-3.5 pt-3.5">
+                  {product.category && (
+                    <span className="rounded-[5px] bg-navy-50 px-[7px] py-0.5 text-[10.5px] font-bold text-navy-600">
+                      {product.category.toUpperCase()}
+                    </span>
+                  )}
+                  <h3 className="mt-2 font-head text-[13.5px] font-bold text-gray-900">
+                    {product.name}
+                  </h3>
+                </div>
+              </Link>
+              <div className="flex items-center justify-between px-3.5 pb-3.5 pt-1.5">
+                <span className="font-head text-[15px] font-extrabold text-gray-900">
+                  ${product.price.toFixed(2)}
+                </span>
+                <QuickAddButton product={{ id: product.id, name: product.name, price: product.price }} />
               </div>
-              <h3 className="mt-3 text-sm font-medium text-gray-900">
-                {product.name}
-              </h3>
-              {product.category && (
-                <p className="text-xs text-gray-400">{product.category}</p>
-              )}
-              <p className="mt-1 text-sm font-semibold text-gray-900">
-                ${product.price.toFixed(2)}
-              </p>
-            </Link>
+            </div>
           ))}
         </div>
       )}

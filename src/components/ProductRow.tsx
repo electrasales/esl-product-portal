@@ -21,7 +21,7 @@ export function ProductRow({ product }: { product: Product }) {
   return (
     <div className="flex items-center justify-between gap-4 px-4 py-3">
       <div className="flex items-center gap-3">
-        <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
+        <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-[9px] bg-gray-50">
           {product.image_url ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -32,8 +32,8 @@ export function ProductRow({ product }: { product: Product }) {
           ) : null}
         </div>
         <div>
-          <p className="text-sm font-medium text-gray-900">{product.name}</p>
-          <p className="text-xs text-gray-500">
+          <p className="font-head text-sm font-bold text-gray-900">{product.name}</p>
+          <p className="text-xs text-gray-400">
             ${product.price.toFixed(2)}
             {product.category ? ` · ${product.category}` : ""}
             {!product.is_active ? " · hidden" : ""}
@@ -43,7 +43,7 @@ export function ProductRow({ product }: { product: Product }) {
       <div className="flex items-center gap-3">
         <Link
           href={`/admin/products/${product.id}/edit`}
-          className="text-sm text-gray-600 hover:text-gray-900"
+          className="text-sm font-semibold text-navy-600 hover:text-navy-900"
         >
           Edit
         </Link>
@@ -51,7 +51,7 @@ export function ProductRow({ product }: { product: Product }) {
           type="button"
           onClick={handleDelete}
           disabled={deleting}
-          className="text-sm text-red-600 hover:underline disabled:opacity-50"
+          className="text-sm font-semibold text-brand-red hover:underline disabled:opacity-50"
         >
           Delete
         </button>

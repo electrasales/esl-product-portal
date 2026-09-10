@@ -37,6 +37,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# design canvas: keep the .dc.html/.json sources, skip the generated
+# multi-MB seeded payload (regenerate with design/seed-canvas.mjs)
+design/*.html
+!design/Main.dc.html
+!design/Login.dc.html
+!design/Cart.dc.html
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

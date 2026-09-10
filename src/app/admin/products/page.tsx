@@ -14,10 +14,10 @@ export default async function AdminProductsPage() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-gray-900">Products</h1>
+        <h1 className="font-head text-2xl font-extrabold text-gray-900">Products</h1>
         <Link
           href="/admin/products/new"
-          className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+          className="rounded-[10px] bg-brand-red px-4 py-2.5 font-head text-sm font-bold text-white hover:bg-brand-red-dark"
         >
           Add product
         </Link>
@@ -28,7 +28,7 @@ export default async function AdminProductsPage() {
           No products yet. Add your first one to get started.
         </p>
       ) : (
-        <div className="mt-6 divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white">
+        <div className="mt-6 divide-y divide-gray-100 rounded-[14px] border border-gray-100 bg-white">
           {products.map((product) => (
             <ProductRow key={product.id} product={product} />
           ))}

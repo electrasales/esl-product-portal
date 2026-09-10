@@ -30,7 +30,7 @@ export function RequestStatusSelect({
       value={status}
       disabled={updating}
       onChange={(e) => handleChange(e.target.value as RequestStatus)}
-      className="rounded-md border border-gray-300 px-2 py-1 text-xs capitalize shadow-sm focus:border-gray-900 focus:outline-none"
+      className="rounded-[7px] border border-gray-200 px-2.5 py-1.5 text-xs font-semibold capitalize text-gray-700 focus:border-navy-600 focus:outline-none"
     >
       {STATUSES.map((s) => (
         <option key={s} value={s}>
