@@ -15,12 +15,20 @@ export default async function AdminProductsPage() {
     <div>
       <div className="flex items-center justify-between">
         <h1 className="font-head text-2xl font-extrabold text-gray-900">Products</h1>
-        <Link
-          href="/admin/products/new"
-          className="rounded-[10px] bg-brand-red px-4 py-2.5 font-head text-sm font-bold text-white hover:bg-brand-red-dark"
-        >
-          Add product
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin/products/import"
+            className="rounded-[10px] border-[1.5px] border-navy-600 px-4 py-2.5 font-head text-sm font-bold text-navy-600 hover:bg-navy-50"
+          >
+            Import
+          </Link>
+          <Link
+            href="/admin/products/new"
+            className="rounded-[10px] bg-brand-red px-4 py-2.5 font-head text-sm font-bold text-white hover:bg-brand-red-dark"
+          >
+            Add product
+          </Link>
+        </div>
       </div>
 
       {!products || products.length === 0 ? (
