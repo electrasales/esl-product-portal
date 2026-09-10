@@ -15,7 +15,7 @@ export async function signIn(
   const password = String(formData.get("password") ?? "");
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
@@ -24,7 +24,13 @@ export async function signIn(
     return { error: error.message };
   }
 
-  redirect("/");
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", data.user.id)
+    .single();
+
+  redirect(profile?.role === "owner" || profile?.role === "staff" ? "/admin/products" : "/");
 }
 
 export async function signUp(

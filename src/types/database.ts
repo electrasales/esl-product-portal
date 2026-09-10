@@ -1,10 +1,11 @@
-export type Role = "customer" | "owner";
+export type Role = "customer" | "owner" | "staff";
 export type RequestStatus = "new" | "reviewed" | "fulfilled";
 
 export interface Profile {
   id: string;
   full_name: string;
   phone: string;
+  email: string;
   role: Role;
   created_at: string;
 }

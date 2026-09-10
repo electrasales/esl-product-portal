@@ -1,13 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import type { Product } from "@/types/database";
 import { QuickAddButton } from "@/components/QuickAddButton";
+import { QuickViewModal } from "@/components/QuickViewModal";
 
 export function CatalogBrowser({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
   const categories = useMemo(() => {
     const set = new Set(products.map((p) => p.category).filter(Boolean));
@@ -63,42 +64,53 @@ export function CatalogBrowser({ products }: { products: Product[] }) {
           No products match your search.
         </p>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((product) => (
             <div
               key={product.id}
-              className="group overflow-hidden rounded-[14px] border border-gray-100 bg-white transition hover:shadow-[0_12px_28px_rgba(31,32,36,0.08)]"
+              className="group overflow-hidden rounded-[16px] border border-gray-100 bg-white transition hover:shadow-[0_16px_36px_rgba(31,32,36,0.1)]"
             >
-              <Link href={`/products/${product.id}`} className="block">
-                <div className="flex aspect-square w-full items-center justify-center overflow-hidden bg-gray-50">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setQuickViewProduct(product)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setQuickViewProduct(product);
+                  }
+                }}
+                className="block cursor-pointer"
+              >
+                <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gray-50">
                   {product.image_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={product.image_url}
                       alt={product.name}
-                      className="h-full w-full object-cover transition group-hover:scale-105"
+                      className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                     />
                   ) : (
-                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#C3C5CC" strokeWidth="1.6">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#C3C5CC" strokeWidth="1.5">
                       <path d="M21 8l-9-5-9 5 9 5 9-5Z" />
                       <path d="M3 8v8l9 5 9-5V8" />
                       <path d="M12 13v8" />
                     </svg>
                   )}
                 </div>
-                <div className="px-3.5 pt-3.5">
+                <div className="px-4 pt-4">
                   {product.category && (
                     <span className="rounded-[5px] bg-navy-50 px-[7px] py-0.5 text-[10.5px] font-bold text-navy-600">
                       {product.category.toUpperCase()}
                     </span>
                   )}
-                  <h3 className="mt-2 font-head text-[13.5px] font-bold text-gray-900">
+                  <h3 className="mt-2 font-head text-[15px] font-bold text-gray-900">
                     {product.name}
                   </h3>
                 </div>
-              </Link>
-              <div className="flex items-center justify-between px-3.5 pb-3.5 pt-1.5">
-                <span className="font-head text-[15px] font-extrabold text-gray-900">
+              </div>
+              <div className="flex items-center justify-between px-4 pb-4 pt-1.5">
+                <span className="font-head text-[17px] font-extrabold text-gray-900">
                   ${product.price.toFixed(2)}
                 </span>
                 <QuickAddButton product={{ id: product.id, name: product.name, price: product.price }} />
@@ -106,6 +118,13 @@ export function CatalogBrowser({ products }: { products: Product[] }) {
             </div>
           ))}
         </div>
+      )}
+
+      {quickViewProduct && (
+        <QuickViewModal
+          product={quickViewProduct}
+          onClose={() => setQuickViewProduct(null)}
+        />
       )}
     </div>
   );

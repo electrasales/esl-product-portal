@@ -16,11 +16,15 @@ export default async function CustomerLayout({
   const user = await getCurrentUser();
 
   if (!user) redirect("/login");
-  if (user.profile.role === "owner") redirect("/admin/products");
+
+  const links =
+    user.profile.role === "owner" || user.profile.role === "staff"
+      ? [...CUSTOMER_LINKS, { href: "/admin/products", label: "Admin" }]
+      : CUSTOMER_LINKS;
 
   return (
     <div className="flex flex-1 flex-col">
-      <NavBar links={CUSTOMER_LINKS} fullName={user.profile.full_name} />
+      <NavBar links={links} fullName={user.profile.full_name} />
       <main className="flex flex-1 flex-col bg-gray-50">{children}</main>
     </div>
   );
